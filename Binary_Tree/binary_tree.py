@@ -93,7 +93,7 @@ class BinarySearchTreeNode:
             if self.left is None:
                 return self.right
             if self.right is None:
-                return self.right
+                return self.left
     #        min_val = self.right.find_min()
     #        self.data = min_val
     #        self.right = self.right.delete(min_val)
@@ -107,9 +107,18 @@ def build_tree(elements):
     for i in range(1, len(elements)):
         root.add_child(elements[i])
     return root
+     
+#                                   5
+#                                 3   6
+#                              1    4     7
+#                                           8
+#                                               9
+#                        
+
+                       
 
 if __name__ == "__main__":
-    numbers = [5,1,4,3,6]
+    numbers = [5, 3, 1, 4, 6, 7, 8, 9]
     numbers_tree = build_tree(numbers)
     print(f'Preorder Traversal: {numbers_tree.pre_order_traversal()}')
     print(f'Inorder Traversal: {numbers_tree.in_order_traversal()}')
@@ -118,5 +127,6 @@ if __name__ == "__main__":
     print(f'Minimum element in tree: {numbers_tree.find_min()}')
     print(f'Maximum element in tree: {numbers_tree.find_max()}')
     print(f'Sum of all the elemnts in tree: {numbers_tree.calculate_sum()}')
-    numbers_tree.delete(9)      
-    print(f'Tree after deletion of 9: {numbers_tree.in_order_traversal()}')
+    x = 3
+    numbers_tree.delete(x)      
+    print(f'Tree after deletion of {x}: {numbers_tree.in_order_traversal()}')
