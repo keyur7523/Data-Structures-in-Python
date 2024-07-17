@@ -101,6 +101,23 @@ class BinarySearchTreeNode:
             self.data = max_val
             self.left = self.left.delete(max_val)
         return self
+    
+    def height_tree(self):
+        if self.left is None and self.right is None:
+            return 0
+        else:
+            if self.left and self.right:
+                return max(self.left.height_tree(), self.right.height_tree()) + 1
+            if self.left:
+                return self.left.height_tree() + 1
+            if self.right:
+                return self.right.height_tree() + 1
+            
+    def is_balanced(self):
+        while self.left is not None or self.right is not None:
+            if abs(self.left.height_tree() - self.right.height_tree()) > 1:
+                return False
+        return True
 
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[0])
@@ -115,18 +132,19 @@ def build_tree(elements):
 #                                               9
 #                        
 
-                       
-
 if __name__ == "__main__":
-    numbers = [5, 3, 1, 4, 6, 7, 8, 9]
+    numbers = [9, 7, 21, 5, 8, 13, 27, 1, 6, 25, 35, 28, 36]
     numbers_tree = build_tree(numbers)
-    print(f'Preorder Traversal: {numbers_tree.pre_order_traversal()}')
-    print(f'Inorder Traversal: {numbers_tree.in_order_traversal()}')
-    print(f'Postorder Traversal: {numbers_tree.post_order_traversal()}')
+    #print(f'Preorder Traversal: {numbers_tree.pre_order_traversal()}')
+    #print(f'Inorder Traversal: {numbers_tree.in_order_traversal()}')
+    #print(f'Postorder Traversal: {numbers_tree.post_order_traversal()}')
 #    print(numbers_tree.search(2))
-    print(f'Minimum element in tree: {numbers_tree.find_min()}')
-    print(f'Maximum element in tree: {numbers_tree.find_max()}')
-    print(f'Sum of all the elemnts in tree: {numbers_tree.calculate_sum()}')
-    x = 3
-    numbers_tree.delete(x)      
-    print(f'Tree after deletion of {x}: {numbers_tree.in_order_traversal()}')
+    #print(f'Minimum element in tree: {numbers_tree.find_min()}')
+    #print(f'Maximum element in tree: {numbers_tree.find_max()}')
+    #print(f'Sum of all the elemnts in tree: {numbers_tree.calculate_sum()}')
+    #print(f'height of the tree: {numbers_tree.height_tree()}')
+    #x = 3
+    #numbers_tree.delete(x)      
+    #print(f'Tree after deletion of {x}: {numbers_tree.in_order_traversal()}')
+   
+    print(f'Is balanced: {numbers_tree.is_balanced()}')
